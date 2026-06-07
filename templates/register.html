@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Rejestracja{% endblock %}
+{% block content %}
+<section class="card narrow">
+    <h2>Załóż konto</h2>
+    <form method="post">
+        <label>Nazwa użytkownika</label>
+        <input type="text" name="username" value="{{ username or '' }}" required>
+        <label>Hasło</label>
+        <input type="password" name="password" required>
+        <button type="submit">Utwórz konto</button>
+    </form>
+</section>
+{% endblock %}

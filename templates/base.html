@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Koci Tinder{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+    <h1>🐾 Koci Tinder</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Start</a>
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('swipe') }}">Swipe</a>
+            <a href="{{ url_for('history') }}">Historia</a>
+            <a href="{{ url_for('account') }}">Konto</a>
+            <form method="post" action="{{ url_for('logout') }}" class="inline-form">
+                <button type="submit">Wyloguj</button>
+            </form>
+        {% else %}
+            <a href="{{ url_for('login') }}">Logowanie</a>
+            <a href="{{ url_for('register') }}">Rejestracja</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>
