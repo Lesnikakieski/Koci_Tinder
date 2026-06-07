@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% block title %}Lista tasków{% endblock %}
+{% block content %}
+<h2>Lista tasków</h2>
+<a href="{{ url_for('add_task') }}">Dodaj zadanie</a>
+{% if tasks|length == 0 %}
+<p>Brak zadań na liście</p>
+{% else %}
+<ul>
+    {% for task in tasks %}
+    <li>
+        {% if task["done"] == 1 %}
+            ✔
+        {% else %}
+            ✖
+        {% endif %}
+         <a href="{{url_for('task', task_id=task['id'])}}">{{ task["title"] }}</a>
+        <small>({{task["created_at"]}})</small>
+        <form method="post" action="{{url_for('toggle_task', task_id=task['id'])}}">
+            <input type="hidden" name="is_task_view" value="0"/>
+            <button type="submit">Zmień status</button>
+        </form>
+        <form method="post" action="{{url_for('delete_task', task_id=task['id'])}}">
+            <button type="submit">Usuń</button>
+        </form>
+        
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

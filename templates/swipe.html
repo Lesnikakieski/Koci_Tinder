@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Swipe kotów{% endblock %}
+{% block content %}
+<section class="card swipe-card">
+    <h2>Przesuń kota</h2>
+    <p id="status">Ładowanie kota...</p>
+    <img id="cat-image" src="" alt="Losowy kot" hidden>
+    <div class="actions">
+        <button id="left-btn" class="danger" type="button">👎 W lewo</button>
+        <button id="right-btn" type="button">💖 W prawo</button>
+    </div>
+</section>
+<script src="{{ url_for('static', filename='swipe.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Start - Koci Tinder{% endblock %}
+{% block content %}
+<section class="card intro">
+    <h2>Witaj w kocim Tinderze 😻</h2>
+    <p>Załóż konto, oglądaj losowe zdjęcia kotów z TheCatAPI i przesuwaj je w prawo lub w lewo.</p>
+    <p>
+        <a class="button" href="{{ url_for('register') }}">Załóż konto</a>
+        <a class="button secondary" href="{{ url_for('login') }}">Zaloguj</a>
+    </p>
+</section>
+{% endblock %}

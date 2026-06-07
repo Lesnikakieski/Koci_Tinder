@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Konto{% endblock %}
+{% block content %}
+<section class="card narrow">
+    <h2>Konto: {{ user['username'] }}</h2>
+    <p>Utworzone: {{ user['created_at'] }}</p>
+    <p>Wszystkie decyzje: {{ stats['total'] or 0 }}</p>
+    <p>Polubione: {{ stats['likes'] or 0 }}</p>
+    <p>Odrzucone: {{ stats['dislikes'] or 0 }}</p>
+
+    <form method="post" action="{{ url_for('delete_account') }}" onsubmit="return confirm('Na pewno usunąć konto i wszystkie dane?')">
+        <button class="danger" type="submit">Usuń konto</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Historia{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>Historia przesunięć</h2>
+    {% if swipes|length == 0 %}
+        <p>Brak zapisanych decyzji.</p>
+    {% else %}
+        <div class="grid">
+            {% for swipe in swipes %}
+                <article class="mini-card">
+                    <img src="{{ swipe['cat_url'] }}" alt="Kot">
+                    <p>{% if swipe['direction'] == 'right' %}💖 Polubiony{% else %}👎 Odrzucony{% endif %}</p>
+                    <small>{{ swipe['created_at'] }}</small>
+                </article>
+            {% endfor %}
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
